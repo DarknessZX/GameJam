@@ -80,19 +80,13 @@ var create = function() {
   Fishing.fishingHook = new FishingHook(Fishing.configs.GAME_WIDTH/2, Fishing.configs.GAME_HEIGHT/2);
   Fishing.fishingLine = new FishingLine(Fishing.fishingHook.position);
 
-// =======
-//   new Wave(200, 300);
-//   setTimeout(function() {
-//     var x = new Wave(200, 400);
-//     x.kill();
-//   }, 100);
-//   setTimeout(function() {
-//     new Wave(400, 400);
-//   }, 200);
 
   Fishing.fishingLineGroups = Fishing.game.add.physicsGroup();
   Fishing.fishingRodsGroups = Fishing.game.add.physicsGroup();
+  Fishing.fishingHooksGroups = Fishing.game.add.physicsGroup();
 
+  Fishing.fishingHook = new FishingHook(Fishing.configs.GAME_WIDTH/2, Fishing.configs.GAME_HEIGHT/2);
+  Fishing.fishingLine = new FishingLine(Fishing.fishingHook.position);
   Fishing.fishingRod = new FishingRod(
     {
       x : Fishing.configs.GAME_WIDTH/2,
@@ -116,8 +110,12 @@ var update = function() {
     boatWave.scale.setTo(2.5);
     Fishing.cooldownBoatWave = 4 + Math.random() * 2;
   }
+
+  Fishing.currentHookPoint = new Phaser.Point(Fishing.configs.GAME_WIDTH/2,Fishing.configs.GAME_HEIGHT/2+300)
+  Fishing.fishingRod.movingRight = true;
+
   Fishing.fishingLine.graphics.angle = Fishing.fishingHook.angle;
 }
-var render = function() {
 
+var render = function() {
 }
