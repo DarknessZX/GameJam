@@ -40,11 +40,16 @@ var create = function() {
   Fishing.game.physics.startSystem(Phaser.Physics.ARCADE);
   Fishing.keyboard = Fishing.game.input.keyboard;
   Fishing.background = Fishing.game.add.tileSprite(0, 0, Fishing.configs.GAME_WIDTH, Fishing.configs.GAME_HEIGHT, 'background');
+  Fishing.wavesGroup = Fishing.game.add.group();
 
-  var test = Fishing.game.add.sprite(0, 0, 'circle');
-  test.anchor.set(0.5);
-  test.scale.y = -0.3;
-  test.position.set(200, 100);
+  new Wave(200, 300);
+  setTimeout(function() {
+    var x = new Wave(200, 400);
+    x.kill();
+  }, 100);
+  setTimeout(function() {
+    new Wave(400, 400);
+  }, 200);
 }
 
 var update = function() {
