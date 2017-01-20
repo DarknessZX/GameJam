@@ -40,6 +40,9 @@ var preload = function() {
     Fishing.game.load.image('boat'            , 'Assets/man&boat.png');
     Fishing.game.load.image('fish2', 'Assets/fish2.png', 166, 143);
     Fishing.game.load.spritesheet('fish1', 'Assets/fish1.png', 166, 143, 36);
+    Fishing.game.load.image('rod'        ,   'Assets/rod.png');
+    Fishing.game.load.image('hook'       ,   'Assets/hook.png');
+    Fishing.game.load.image('fishingline',   'Assets/fishingline.png');
     Fishing.game.time.advancedTiming = true;
 }
 
@@ -74,6 +77,29 @@ var create = function() {
   fish.smoothed = true;
 
   anim.play(16, true);
+  Fishing.fishingHook = new FishingHook(Fishing.configs.GAME_WIDTH/2, Fishing.configs.GAME_HEIGHT/2);
+  Fishing.fishingLine = new FishingLine(Fishing.fishingHook.position);
+
+// =======
+//   new Wave(200, 300);
+//   setTimeout(function() {
+//     var x = new Wave(200, 400);
+//     x.kill();
+//   }, 100);
+//   setTimeout(function() {
+//     new Wave(400, 400);
+//   }, 200);
+
+  Fishing.fishingLineGroups = Fishing.game.add.physicsGroup();
+  Fishing.fishingRodsGroups = Fishing.game.add.physicsGroup();
+
+  Fishing.fishingRod = new FishingRod(
+    {
+      x : Fishing.configs.GAME_WIDTH/2,
+      y: Fishing.configs.GAME_HEIGHT,
+      img: 'rod'
+    }
+  );
 }
 
 var update = function() {
@@ -90,11 +116,7 @@ var update = function() {
     boatWave.scale.setTo(2.5);
     Fishing.cooldownBoatWave = 4 + Math.random() * 2;
   }
-
-  // Fishing.waveBackground.forEach(function(wave) {
-  //   wave.tilePosition.x += 2;
-  //   wave.alpha -= (wave.alpha >= 0.1 ? 0.01 : 0);
-  // });
+  Fishing.fishingLine.graphics.angle = Fishing.fishingHook.angle;
 }
 var render = function() {
 
