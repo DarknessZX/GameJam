@@ -2,9 +2,11 @@ class Wave extends Phaser.Sprite{
   constructor(x, y, configs) {
     configs = configs || {};
     super(Fishing.game, x, y);
+    this.name = "wave";
     if(configs.x && configs.y) {
       this.position.setTo(configs.x, configs.y);
     }
+    this.timeOut = configs.timeOut || 3;
     Fishing.game.add.existing(this);
     Fishing.game.physics.enable(this, Phaser.Physics.ARCADE);
     this.ripples = [];
@@ -20,9 +22,15 @@ class Wave extends Phaser.Sprite{
   }
 
   update() {
-    this.ripples.forEach(function(ripple) {
-      ripple.update();
-    })
+    if(this.alive) {
+      this.timeOut -= Fishing.game.time.physicsElapsed;
+      if(this.timeOut <= 0) {
+        Fishing.waveController.kill(this);
+      }
+      this.ripples.forEach(function(ripple) {
+        ripple.update();
+      })
+    }
   }
 
   reset(x, y) {
@@ -37,6 +45,8 @@ class Wave extends Phaser.Sprite{
     this.ripples.forEach(function(ripple) {
       ripple.reborn();
     })
+    this.scale.set(1, 1);
+    this.timeOut = configs.timeOut || 3;
 
     if(configs.x && configs.y) {
       this.position.setTo(configs.x, configs.y);

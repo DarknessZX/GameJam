@@ -4,10 +4,10 @@ class Controller{
     this.construcs = {};
     names.forEach(function(name) {
       this.deads[name] = [];
-    });
+    }.bind(this));
     construcs.forEach(function(construc, i) {
       this.construcs[names[i]] = construc;
-    });
+    }.bind(this));
     this.group = group;
   }
 
@@ -19,7 +19,7 @@ class Controller{
       child.reborn(config);
     } else {
       // console.log("ok");
-      this.group.add(child = new construcs[name](200, 400, config));
+      this.group.add(child = new this.construcs[name](200, 400, config));
       //bullet =  Fishing.bulletGroup.children.slice(-1)[0];
     }
     return child;
