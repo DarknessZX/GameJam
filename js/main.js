@@ -94,6 +94,7 @@ var create = function() {
       img: 'rod'
     }
   );
+  $(document).trigger("creating");
 }
 
 var update = function() {
