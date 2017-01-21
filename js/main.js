@@ -64,7 +64,7 @@ var create = function() {
   Fishing.fishsGroup = Fishing.game.add.group();
   Fishing.powerBarGroup = Fishing.game.add.group();
   //rod
-  Fishing.fishingHook = new FishingHook(Fishing.configs.GAME_WIDTH / 3 - 100, Fishing.configs.GAME_HEIGHT / 2.5);
+  Fishing.fishingHook = new FishingHook(Fishing.configs.GAME_WIDTH / 2, Fishing.configs.GAME_HEIGHT / 2.5);
   //Fishing.fishingLine = new FishingLine(Fishing.fishingHook.position);
 
 
@@ -74,7 +74,7 @@ var create = function() {
 
   Fishing.fishingRod = new FishingRod(
     {
-      x : Fishing.configs.GAME_WIDTH/3 - 100,
+      x : Fishing.configs.GAME_WIDTH/2,
       y: Fishing.configs.GAME_HEIGHT/2.5,
       img: 'rod'
     }
@@ -85,7 +85,7 @@ var create = function() {
   // Fishing.fishingRod.sprite.scale.setTo(-0.5, 0.5);
 
   //boat and man
-  Fishing.boat = Fishing.game.add.sprite(Fishing.configs.GAME_WIDTH / 2, Fishing.configs.GAME_HEIGHT * 0.8, 'boat');
+  Fishing.boat = Fishing.game.add.sprite(Fishing.configs.GAME_WIDTH - 200, Fishing.configs.GAME_HEIGHT * 0.8, 'boat');
   Fishing.boat.anchor.setTo(0.5, 0.5);
   //boar and man move up and down
   Fishing.boatTween = Fishing.game.add.tween(Fishing.boat);
@@ -132,7 +132,7 @@ var update = function() {
   //summon boatWave
   Fishing.cooldownBoatWave -= Fishing.game.time.physicsElapsed;
   if(Fishing.cooldownBoatWave <= 0) {
-    var boatWave = Fishing.waveController.get("wave", {x: Fishing.configs.GAME_WIDTH / 2,
+    var boatWave = Fishing.waveController.get("wave", {x: Fishing.configs.GAME_WIDTH -200,
        y: Fishing.configs.GAME_HEIGHT / 2 + 280});
     boatWave.scale.setTo(2.5);
     boatWave.isBoatWave = true;

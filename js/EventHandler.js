@@ -12,14 +12,17 @@ $(document).on("creating", function() {
     keyPress: function(e) { //power, origin, angle
       if(!Fishing.game.paused) {
          // Spacebar
-         Fishing.powerBar.pause();
+        Fishing.powerBar.pause();
         if(Fishing.state == "Click") {
           if(e.keyCode == 32){
-            var origin = Fishing.boat.position;
+            var origin = {
+              x: Fishing.configs.GAME_WIDTH/2,
+              y: Fishing.boat.position.y
+            };
             var power = (Fishing.powerBar.mask.position.x + Fishing.powerBar.width) * 2;
             var angle = Fishing.fishingHook.rotation;
             // var maxPower = 300;
-            // angle = -Math.PI / 3;
+            // angle = 0;
             // console.log(power = (origin.y - Fishing.configs.GAME_HEIGHT / 2 - 50) / 0.3);
             // console.log(origin, power, angle);
             Fishing.state = "SpacePress";
