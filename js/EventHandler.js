@@ -16,7 +16,7 @@ $(document).on("creating", function() {
           if(e.keyCode == 32){
              Fishing.powerBar.pause();
              Fishing.fishingLine.clear();
-             Fishing.fishingRod.loadAndPlay("hookRod");
+             Fishing.fishingRod.loadAndPlay("hookRod", 15, false);
             // Fishing.fishingLine.setHitLine(hitPoint);
 
             //run animation hook rod

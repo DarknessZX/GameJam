@@ -32,12 +32,12 @@ class FishingRod {
   update() {
   }
 
-  loadAndPlay(name) {
+  loadAndPlay(name, rate, kill) {
     let config = this.sprite.animations.map[name];
     this.sprite.loadTexture(config.img);
     this.sprite.anchor.setTo(config.anchor.x, config.anchor.y);
     this.sprite.scale.setTo(config.scale);
-    this.sprite.animations.play(name, 10, false);
+    this.sprite.animations.play(name, rate || 10, kill);
   }
 
   onCompleteHookRod() {
