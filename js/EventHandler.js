@@ -2,7 +2,7 @@
 $(document).on("creating", function() {
   Fishing.game.eventHandler = {
     click: function(e) {
-      if(!Fishing.game.paused) {
+      if(!Fishing.game.paused && Fishing.state != "Success") {
         //stop tween hook rotation
         Fishing.powerBar.resume();
         Fishing.fishingHook.pause();
@@ -33,6 +33,7 @@ $(document).on("creating", function() {
           // sun.scale.setTo(0.1);
           var fish = Fishing.fishController.get("fish1", hitPoint);
           fish.loadAndPlay("hited");
+          Fishing.fishingRod.fish = fish;
           Fishing.fishingRod.loadAndPlay("idle");
           Fishing.hookTwerk.show(hitPoint);
           Fishing.hookBound.show(hitPoint);
@@ -51,9 +52,12 @@ $(document).on("creating", function() {
         }
       }
     },
-    mouseMove: function(e, hitPoint) {
+    mouseMove: function(e, hitPoint, fish) {
       if(!Fishing.game.paused) {
         if(Fishing.state == "Hit") {
+          var pointer = Fishing.game.input.activePointer.position;
+          Fishing.hookTwerk.position.x += pointer.x > Fishing.hookTwerk.position.x ? 3 : -3;
+          Fishing.hookTwerk.position.y += pointer.y > Fishing.hookTwerk.position.y ? 3 : -3;
 
           //start twerk like neighbors from hell >> twerking
           //add fish mouch, some wave
@@ -65,33 +69,39 @@ $(document).on("creating", function() {
         }
       }
     },
-    mouseEnd: function(e, hitPoint) {
+    mouseEnd: function(e, hitPoint, success, fish) {
       if(!Fishing.game.paused) {
         if(Fishing.state == "Hit") {
           Fishing.hookBound.hide();
           Fishing.hookTwerk.hide();
           Fishing.state = "MouseMove";
-          if(Fishing.hookBound.position.distance(Fishing.hookTwerk.position) > 5) {
-            $("canvas").trigger("fail", [hitPoint]);
+          if(!success) {
+            Fishing.fishingHook.resume();
+            $("canvas").trigger("fail", [hitPoint, fish]);
           } else {
-            $("canvas").trigger("success", [hitPoint]);
+            $("canvas").trigger("success", [hitPoint, fish]);
           }
         }
         // on twerking
       }
     },
-    success: function(e, hitPoint) {
+    success: function(e, hitPoint, fish) {
       if(!Fishing.game.paused) {
         if(Fishing.state == "MouseMove") {
+          Fishing.state = "Success";
           console.log("success");
           console.log(hitPoint);
           Fishing.game.score += 100;
           Fishing.game.scoretext.setText('Score: ' + Fishing.game.score);
+          fish.loadAndPlay("catched", 13, false);
         }
         // start fish animation, fish come up from water
       }
     },
-    fail: function(e, hitPoint) {
+    fail: function(e, hitPoint, fish) {
+      if(fish) {
+        Fishing.fishController.kill(fish);
+      }
       if(!Fishing.game.paused) {
         if(Fishing.state == "MouseMove") {
           console.log("fail");

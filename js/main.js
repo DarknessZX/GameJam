@@ -131,20 +131,17 @@ var create = function() {
 
   //</test>
 
-  var fish = Fishing.fishController.get("fish1", {x: 200, y: 200});
-  fish.loadAndPlay("hited", 0.3, false);
-
   Fishing.hookBound = new HookBound(0, 0);
   Fishing.hookTwerk = new HookTwerk(0, 0);
-  Fishing.hookBound.show(fish);
-  Fishing.hookTwerk.show(fish);
+  Fishing.popupGroup.add(Fishing.hookBound);
+  Fishing.popupGroup.add(Fishing.hookTwerk);
 }
 
 var update = function() {
   // summon fish wave
   Fishing.cooldown -= Fishing.game.time.physicsElapsed;
   if(Fishing.cooldown <= 0) {
-    var wave = Fishing.waveController.get("wave", {x: 150 + Math.random() * (Fishing.configs.GAME_WIDTH - 300), y: Fishing.configs.LAKE.y + 45 + Math.random(Fishing.configs.GAME_HEIGHT - Fishing.configs.LAKE.y - 90)});
+    var wave = Fishing.waveController.get("wave", {x: 150 + Math.random() * (Fishing.configs.GAME_WIDTH - 300), y: Fishing.configs.LAKE.y + 45 + Math.random() * 100});
     Fishing.cooldown = 10 + Math.random() * 5;
   }
 
