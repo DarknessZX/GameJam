@@ -1,26 +1,24 @@
-class FireAngle extends Phaser.Graphics {
+class FireAngle2 extends Phaser.Graphics {
   constructor(x, y) {
     super(Fishing.game, x, y);
     Fishing.game.add.existing(this);
-    this.addChild(Fishing.game.add.text(-100, 80, "THROW ANGLE", { font: "26px Arial", fill: "#000000" }));
+    this.addChild(Fishing.game.add.text(-400, -500, "THROW AREA", { font: "128px Arial", fill: "#000000" }));
   }
 
   init() {
     this.alpha = 0;
     this.beginFill("0xff0000");
-    this.drawCircle(0, 0, 300);
-    this.position.set(Fishing.fishingRod.sprite.x, Fishing.fishingRod.sprite.y);
+    this.drawCircle(0, 0, 1500);
+    this.scale.setTo(1, 0.3);
+    this.position.set(Fishing.configs.GAME_WIDTH / 2, Fishing.boat.position.y);
     this.mask = Fishing.game.add.graphics();
     this.addChild(this.mask);
     this.mask.beginFill("0x000000");
     this.mask.moveTo(0, 0);
-    this.mask.lineTo(-330, 200);
-    this.mask.lineTo(330, 200);
+    this.mask.lineTo(-1450, -1000);
+    this.mask.lineTo(1450, -1000);
     this.tween = Fishing.game.add.tween(this);
     this.tween.to({alpha: 0}, 3000);
-    this.tween.onComplete.add(function() {
-      Fishing.fireAngle2.show();
-    })
     return this;
   }
 
@@ -28,6 +26,7 @@ class FireAngle extends Phaser.Graphics {
   }
 
   show() {
+    console.log(">>");
     this.alpha = 0.4;
     this.tween.start();
   }

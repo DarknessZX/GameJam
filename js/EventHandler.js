@@ -47,6 +47,8 @@ $(document).on("creating", function() {
           // console.log("miss");
           Fishing.state = null;
           var missText = new Message(hitPoint.x, hitPoint.y, "Miss");
+          if(Math.random() * 2 < 0)
+            Fishing.fireAngle.show();
           setTimeout(function() {
             missText.kill();
           }, 500);
@@ -111,6 +113,8 @@ $(document).on("creating", function() {
         if(Fishing.state == "MouseMove") {
           var failText = new Message(hitPoint.x, hitPoint.y, "Fail");
           Fishing.state = null;
+          if(Math.random() * 3 < 0)
+            Fishing.fireAngle.show();
           setTimeout(function() {
             failText.kill();
           }, 500);
