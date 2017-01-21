@@ -2,7 +2,7 @@
 $(document).on("creating", function() {
   Fishing.game.eventHandler = {
     click: function(e) {
-      if(!Fishing.game.paused && Fishing.state != "Success") {
+      if(!Fishing.game.paused && !Fishing.state) {
         //stop tween hook rotation
         Fishing.powerBar.resume();
         Fishing.fishingHook.pause();
@@ -45,6 +45,7 @@ $(document).on("creating", function() {
         if(Fishing.state == "SpacePress") {
           //show "miss" message, come back like normal
           console.log("miss");
+          Fishing.state = null;
           var missText = new Message(hitPoint.x, hitPoint.y, "Miss");
           setTimeout(function() {
             missText.kill();
@@ -109,6 +110,7 @@ $(document).on("creating", function() {
       if(!Fishing.game.paused) {
         if(Fishing.state == "MouseMove") {
           var failText = new Message(hitPoint.x, hitPoint.y, "Fail");
+          Fishing.state = null;
           setTimeout(function() {
             failText.kill();
           }, 500);
