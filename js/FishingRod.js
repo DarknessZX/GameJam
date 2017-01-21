@@ -6,7 +6,6 @@ class FishingRod {
       info.y,
       info.img
     );
-    console.log(this.sprite);
     this.configs = configs;
     this.sprite.anchor.set(0.1, 0.1);
   }

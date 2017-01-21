@@ -1,7 +1,7 @@
 class Fish1 extends Phaser.Sprite{
   constructor(x, y, configs) {
     configs = configs || {};
-    super(Fishing.game, x, y, "fish1idle");
+    super(Fishing.game, x, y);
     if(configs.x && configs.y) {
       this.position.setTo(configs.x, configs.y);
     }
@@ -17,9 +17,7 @@ class Fish1 extends Phaser.Sprite{
       this.loadTexture(this.animations.map[key]);
       this.animations.add(key);
     }.bind(this));
-    this.loadAndPlay("idle", 1, false, function() {
-      this.loadAndPlay("catched", 20, true);
-    }.bind(this));
+    // this.loadAndPlay("idle", 1, false);
   }
 
   update() {

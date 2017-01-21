@@ -8,8 +8,6 @@ class FishingLine {
     this.graphics.moveTo(0,0);
 
     this.graphics.lineTo(0,300);
-
-    console.log(this.graphics);
     this.countdown = 0;
     this.isClear = true;
     this.isHitWave = true;
