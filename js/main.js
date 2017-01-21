@@ -38,6 +38,7 @@ var preload = function() {
     Fishing.game.load.image('waveBackground'  , 'Assets/waveBackground.png');
     Fishing.game.load.image('circle'          , 'Assets/circle.png');
     Fishing.game.load.image('boat'            , 'Assets/man&boat.png');
+    Fishing.game.load.image('pole'            , 'Assets/pole.png');
     Fishing.game.load.image('fish2', 'Assets/fish2.png', 166, 143);
     Fishing.game.load.spritesheet('fish1', 'Assets/fish1.png', 166, 143, 36);
     Fishing.game.load.image('rod'        ,   'Assets/rod.png');
@@ -57,6 +58,25 @@ var create = function() {
   // }
   Fishing.wavesGroup = Fishing.game.add.group();
 
+  //rod
+  Fishing.fishingHook = new FishingHook(Fishing.configs.GAME_WIDTH/2, Fishing.configs.GAME_HEIGHT/2);
+  Fishing.fishingLine = new FishingLine(Fishing.fishingHook.position);
+
+  Fishing.fishingLineGroups = Fishing.game.add.physicsGroup();
+  Fishing.fishingRodsGroups = Fishing.game.add.physicsGroup();
+  Fishing.fishingHooksGroups = Fishing.game.add.physicsGroup();
+
+  Fishing.fishingHook = new FishingHook(Fishing.configs.GAME_WIDTH/2, Fishing.configs.GAME_HEIGHT/2);
+  Fishing.fishingLine = new FishingLine(Fishing.fishingHook.position);
+  Fishing.fishingRod = new FishingRod(
+    {
+      x : Fishing.configs.GAME_WIDTH/2,
+      y: Fishing.configs.GAME_HEIGHT,
+      img: 'rod'
+    }
+  );
+  Fishing.fishingRod.sprite.scale.setTo(-0.5, 0.5);
+
   //boat and man
   Fishing.boat = Fishing.game.add.sprite(Fishing.configs.GAME_WIDTH / 2, Fishing.configs.GAME_HEIGHT / 2, 'boat');
   Fishing.boat.anchor.setTo(0.5, 0);
@@ -68,6 +88,7 @@ var create = function() {
   Fishing.boatTween.to({ y: Fishing.configs.GAME_HEIGHT / 2 }, 1500);
   Fishing.boatTween.loop(true);
   Fishing.boatTween.start();
+
 
   //create wave controller
   Fishing.waveController = new WaveController();
@@ -85,23 +106,6 @@ var create = function() {
   fish.smoothed = true;
 
   anim.play(16, true);
-  Fishing.fishingHook = new FishingHook(Fishing.configs.GAME_WIDTH/2, Fishing.configs.GAME_HEIGHT/2);
-  Fishing.fishingLine = new FishingLine(Fishing.fishingHook.position);
-
-
-  Fishing.fishingLineGroups = Fishing.game.add.physicsGroup();
-  Fishing.fishingRodsGroups = Fishing.game.add.physicsGroup();
-  Fishing.fishingHooksGroups = Fishing.game.add.physicsGroup();
-
-  Fishing.fishingHook = new FishingHook(Fishing.configs.GAME_WIDTH/2, Fishing.configs.GAME_HEIGHT/2);
-  Fishing.fishingLine = new FishingLine(Fishing.fishingHook.position);
-  Fishing.fishingRod = new FishingRod(
-    {
-      x : Fishing.configs.GAME_WIDTH/2,
-      y: Fishing.configs.GAME_HEIGHT,
-      img: 'rod'
-    }
-  );
   //</test>
 }
 
@@ -130,5 +134,5 @@ var update = function() {
 }
 
 var render = function() {
-  
+
 }
