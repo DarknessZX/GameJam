@@ -28,7 +28,7 @@ $(document).on("creating", function() {
       if(!Fishing.game.paused) {
         if(Fishing.state == "SpacePress") {
           Fishing.state = "Hit";
-          console.log("hit");
+          // console.log("hit");
           // var sun = Fishing.game.add.sprite(hitPoint.x, hitPoint.y, "sun");
           // sun.scale.setTo(0.1);
           var fish = Fishing.fishController.get("fish1", hitPoint);
@@ -44,7 +44,7 @@ $(document).on("creating", function() {
       if(!Fishing.game.paused) {
         if(Fishing.state == "SpacePress") {
           //show "miss" message, come back like normal
-          console.log("miss");
+          // console.log("miss");
           Fishing.state = null;
           var missText = new Message(hitPoint.x, hitPoint.y, "Miss");
           setTimeout(function() {
@@ -90,8 +90,8 @@ $(document).on("creating", function() {
       if(!Fishing.game.paused) {
         if(Fishing.state == "MouseMove") {
           Fishing.state = "Success";
-          console.log("success");
-          console.log(hitPoint);
+          // console.log("success");
+          // console.log(hitPoint);
           Fishing.game.score += 100;
           Fishing.game.scoretext.setText('Score: ' + Fishing.game.score);
           fish.loadAndPlay("catched", 13, false);

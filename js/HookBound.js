@@ -13,10 +13,10 @@ class HookBound extends Phaser.Sprite {
 
   show(configs) {
     configs = configs || {};
-    console.log(this);
+    // console.log(this);
     this.position.set(configs.x || 0, configs.y || 0);
     this.alpha = 1;
-    console.log(this);
+    // console.log(this);
   }
   hide(){
     this.alpha = 0;

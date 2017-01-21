@@ -135,6 +135,7 @@ var create = function() {
   Fishing.hookTwerk = new HookTwerk(0, 0);
   Fishing.popupGroup.add(Fishing.hookBound);
   Fishing.popupGroup.add(Fishing.hookTwerk);
+  new FireAngle(0, 0);
 }
 
 var update = function() {
