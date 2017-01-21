@@ -51,6 +51,7 @@ var preload = function() {
     Fishing.game.load.image('cloud2'            , 'Assets/cloud2.png');
     Fishing.game.load.image('sun'               , 'Assets/sun.png');
     Fishing.game.load.spritesheet('book'        , 'Assets/book.png', 38.5, 32, 4);
+    Fishing.game.load.audio('backgroundmusic'   , 'Assets/Happy-Boy-End-Theme-Kevin-MacLeod.mp3');
     Fishing.game.time.advancedTiming = true;
 }
 
@@ -68,14 +69,18 @@ var create = function() {
   Fishing.powerBarGroup = Fishing.game.add.group();
   Fishing.popupGroup = Fishing.game.add.group();
   //rod
-  Fishing.fishingHook = new FishingHook(Fishing.configs.GAME_WIDTH / 2, Fishing.configs.GAME_HEIGHT / 2.5);
+
   //Fishing.fishingLine = new FishingLine(Fishing.fishingHook.position);
 
 
   Fishing.fishingLineGroups = Fishing.game.add.physicsGroup();
-  Fishing.fishingRodsGroups = Fishing.game.add.physicsGroup();
+
   Fishing.fishingHooksGroups = Fishing.game.add.physicsGroup();
 
+  Fishing.fishingLine = new FishingLine(new Phaser.Point(Fishing.configs.GAME_WIDTH/2,Fishing.configs.GAME_HEIGHT/2.5));
+
+  Fishing.fishingHook = new FishingHook(Fishing.configs.GAME_WIDTH / 2, Fishing.configs.GAME_HEIGHT / 2.5);
+  Fishing.fishingRodsGroups = Fishing.game.add.physicsGroup();
   Fishing.fishingRod = new FishingRod(
     {
       x : Fishing.configs.GAME_WIDTH/2,
@@ -84,8 +89,11 @@ var create = function() {
     }
   );
 
-  Fishing.fishingLine = new FishingLine(new Phaser.Point(Fishing.fishingRod.sprite.position.x,Fishing.fishingRod.sprite.position.y));
+  var music;
 
+  music = Fishing.game.add.audio('backgroundmusic');
+
+  music.play();
   // Fishing.fishingRod.sprite.scale.setTo(-0.5, 0.5);
 
   //boat and man
