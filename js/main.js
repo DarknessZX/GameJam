@@ -59,15 +59,14 @@ var create = function() {
   Fishing.wavesGroup = Fishing.game.add.group();
 
   //rod
-  Fishing.fishingHook = new FishingHook(Fishing.configs.GAME_WIDTH/2, Fishing.configs.GAME_HEIGHT/2);
-  Fishing.fishingLine = new FishingLine(Fishing.fishingHook.position);
+  //Fishing.fishingHook = new FishingHook(Fishing.configs.GAME_WIDTH/2, Fishing.configs.GAME_HEIGHT/2);
+
 
   Fishing.fishingLineGroups = Fishing.game.add.physicsGroup();
   Fishing.fishingRodsGroups = Fishing.game.add.physicsGroup();
   Fishing.fishingHooksGroups = Fishing.game.add.physicsGroup();
 
-  Fishing.fishingHook = new FishingHook(Fishing.configs.GAME_WIDTH/2, Fishing.configs.GAME_HEIGHT/2);
-  Fishing.fishingLine = new FishingLine(Fishing.fishingHook.position);
+  //Fishing.fishingLine = new FishingLine(Fishing.fishingHook.position);
   Fishing.fishingRod = new FishingRod(
     {
       x : Fishing.configs.GAME_WIDTH/2,
@@ -76,7 +75,9 @@ var create = function() {
     }
   );
   Fishing.fishingRod.sprite.scale.setTo(-0.5, 0.5);
+  Fishing.fishingLine = new FishingLine(new Phaser.Point(Fishing.fishingRod.sprite.position.x + Fishing.fishingRod.sprite.width/2,Fishing.fishingRod.sprite.position.y- Fishing.fishingRod.sprite.height/2));
 
+  Fishing.fishingHook = new FishingHook(Fishing.fishingLine.graphics.position.x, Fishing.fishingLine.graphics.position.y);
   //boat and man
   Fishing.boat = Fishing.game.add.sprite(Fishing.configs.GAME_WIDTH / 2, Fishing.configs.GAME_HEIGHT / 2, 'boat');
   Fishing.boat.anchor.setTo(0.5, 0);
