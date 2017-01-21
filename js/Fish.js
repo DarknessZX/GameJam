@@ -34,6 +34,7 @@ class Fish1 extends Phaser.Sprite{
   }
 
   reborn(configs) {
+    configs = configs || {};
     this.alive = this._exists = this.exists = true;
     this.scale.set(1, 1);
     if(configs.x && configs.y) {

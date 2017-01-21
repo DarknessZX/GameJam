@@ -12,12 +12,11 @@ $(document).on("creating", function() {
     keyPress: function(e) { //power, origin, angle
       if(!Fishing.game.paused) {
          // Spacebar
-        Fishing.powerBar.pause();
-        Fishing.fishingHook.alpha = 0;
-        Fishing.fishingLine.graphics.clear();
         if(Fishing.state == "Click") {
           if(e.keyCode == 32){
-            Fishing.fishingRod.loadAndPlay("hookRod");
+             Fishing.powerBar.pause();
+             Fishing.fishingLine.clear();
+             Fishing.fishingRod.loadAndPlay("hookRod");
             // Fishing.fishingLine.setHitLine(hitPoint);
 
             //run animation hook rod
@@ -34,6 +33,9 @@ $(document).on("creating", function() {
           // sun.scale.setTo(0.1);
           var fish = Fishing.fishController.get("fish1", hitPoint);
           fish.loadAndPlay("hited");
+          Fishing.fishingRod.loadAndPlay("idle");
+          Fishing.hookTwerk.show(hitPoint);
+          Fishing.hookBound.show(hitPoint);
         }
       }
     },
@@ -43,13 +45,10 @@ $(document).on("creating", function() {
           //show "miss" message, come back like normal
           console.log("miss");
           var missText = new Message(hitPoint.x, hitPoint.y, "Miss");
-          var cloud = Fishing.game.add.sprite(hitPoint.x, hitPoint.y, "cloud1");
-          cloud.scale.setTo(0.1);
           setTimeout(function() {
             missText.kill();
           }, 500);
         }
-        Fishing.fishingHook.resume();
       }
     },
     mouseMove: function(e, hitPoint) {

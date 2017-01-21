@@ -34,6 +34,7 @@ class Wave extends Phaser.Sprite{
   }
 
   reset(configs) {
+    configs = configs || {};
     this.position.setTo(configs.x, configs.y);
     this.scale.set(1, 1);
     this.timeOut = configs.timeOut || 10;
@@ -56,6 +57,7 @@ class Wave extends Phaser.Sprite{
   }
 
   checkHit(point) {
+    point = point || {};
     if(this.x - 120 < point.x && this.x + 120 > point.x
         && this.y - 30 < point.y && this.y + 30 > point.y)
         return true;

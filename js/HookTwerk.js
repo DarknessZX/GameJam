@@ -1,26 +1,28 @@
+
 class HookTwerk extends Phaser.Sprite {
   constructor(x, y, configs) {
     configs = configs || {};
-    super(x, y, 'hook');
+    super(Fishing.game, x, y, 'hookBound');
+    Fishing.game.add.existing(this);
     this.timeOut = 3;
   }
 
   update() {
-    if(this.alpha > 0) {
+    if(this.alpha > 0 && this.alive) {
       this.timeOut -= Fishing.game.time.physicsElapsed;
       if(this.timeOut <= 0) {
-        
+        this.hide();
       }
-      this.x += Math.Random() * 5;
-      this.y += Math.Random() * 5;
+      this.position.x += Math.random() * 5;
+      this.position.y += Math.random() * 5;
     }
   }
 
   show(configs) {
+    configs = configs || {};
     this.position.set(configs.x || 0, configs.y || 0);
     this.alpha = 1;
   }
-
   hide(){
     this.alpha = 0;
   }

@@ -61,8 +61,19 @@ class FishingRod {
     if(!hit) {
       $("canvas").trigger("miss", [hitPoint]);
       this.loadAndPlay("idle");
-    }
 
+      // setTimeout(function() {
+      //   if(Fishing.state != "Click") {
+      //     Fishing.fishingLine.resume();
+      //   }
+      // }.bind(this), 200);
+
+      setTimeout(function() {
+        if(Fishing.state != "Click") {
+          Fishing.fishingHook.resume();
+        }
+      }.bind(this), 1000);
+    }
     Fishing.fishingLine.setHitLine(hitPoint);
   }
 }

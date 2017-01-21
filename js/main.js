@@ -136,6 +136,8 @@ var create = function() {
 
   Fishing.hookBound = new HookBound(0, 0);
   Fishing.hookTwerk = new HookTwerk(0, 0);
+  Fishing.hookBound.show(fish);
+  Fishing.hookTwerk.show(fish);
 }
 
 var update = function() {

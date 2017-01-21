@@ -26,6 +26,8 @@ class FishingHook extends Phaser.Sprite{
   }
 
   resume() {
+    Fishing.fishingLine.resume();
     Fishing.hookTween.resume();
+    Fishing.fishingHook.alpha = 1;
   }
 }

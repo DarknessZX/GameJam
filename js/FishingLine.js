@@ -27,15 +27,26 @@ class FishingLine {
       this.graphics.clear();
       this.isHitWave = false;
     }
-    console.log(hitwave);
     var movePosition = {
       x: hitwave.x - this.graphics.x,
       y: hitwave.y - this.graphics.y
     };
-    console.log(this.graphics);
     this.graphics.lineStyle(4, "0x000000", 1);
     this.graphics.angle = 0;
     this.graphics.moveTo(0,0);
     this.graphics.lineTo(hitwave.x - this.graphics.x,hitwave.y - this.graphics.y);
+  }
+
+  clear() {
+    Fishing.fishingHook.alpha = 0;
+    this.graphics.clear();
+  }
+
+  resume() {
+    this.graphics.clear();
+    this.graphics.lineStyle(4, "0x000000", 1);
+    this.graphics.moveTo(0,0);
+    this.graphics.lineTo(0,300);
+    this.isHitWave = true;
   }
 }
