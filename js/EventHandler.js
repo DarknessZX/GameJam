@@ -42,9 +42,12 @@ $(document).on("creating", function() {
         if(Fishing.state == "SpacePress") {
           //show "miss" message, come back like normal
           console.log("miss");
-          
+          var missText = new Message(hitPoint.x, hitPoint.y, "Miss");
           var cloud = Fishing.game.add.sprite(hitPoint.x, hitPoint.y, "cloud1");
           cloud.scale.setTo(0.1);
+          setTimeout(function() {
+            missText.kill();
+          }, 500);
         }
         Fishing.fishingHook.resume();
       }
