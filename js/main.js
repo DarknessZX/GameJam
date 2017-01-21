@@ -86,13 +86,13 @@ var create = function() {
   // Fishing.fishingRod.sprite.scale.setTo(-0.5, 0.5);
 
   //boat and man
-  Fishing.boat = Fishing.game.add.sprite(Fishing.configs.GAME_WIDTH - 200, Fishing.configs.GAME_HEIGHT * 0.8, 'boat');
+  Fishing.boat = Fishing.game.add.sprite(Fishing.configs.GAME_WIDTH - 200, Fishing.configs.GAME_HEIGHT * 0.8 + 40, 'boat');
   Fishing.boat.anchor.setTo(0.5, 0.5);
   //boar and man move up and down
   Fishing.boatTween = Fishing.game.add.tween(Fishing.boat);
-  Fishing.boatTween.to({ y: Fishing.configs.GAME_HEIGHT * 0.8 + 10 }, 1500);
-  Fishing.boatTween.to({ y: Fishing.configs.GAME_HEIGHT * 0.8 - 10 }, 3000);
-  Fishing.boatTween.to({ y: Fishing.configs.GAME_HEIGHT * 0.8 }, 1500);
+  Fishing.boatTween.to({ y: Fishing.configs.GAME_HEIGHT * 0.8 + 50 }, 1500);
+  Fishing.boatTween.to({ y: Fishing.configs.GAME_HEIGHT * 0.8 + 30 }, 3000);
+  Fishing.boatTween.to({ y: Fishing.configs.GAME_HEIGHT * 0.8 + 40 }, 1500);
   Fishing.boatTween.loop(true);
   Fishing.boatTween.start();
 
