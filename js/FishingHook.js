@@ -21,11 +21,11 @@ class FishingHook extends Phaser.Sprite{
     // }
   }
 
-  stopTween() {
-    Fishing.hookTween.stop();
+  pause() {
+    Fishing.hookTween.pause();
   }
 
-  startTween() {
-    Fishing.hookTween.start();
+  resume() {
+    Fishing.hookTween.resume();
   }
 }

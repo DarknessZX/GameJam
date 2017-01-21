@@ -17,7 +17,7 @@ class Fish1 extends Phaser.Sprite{
       this.loadTexture(this.animations.map[key]);
       this.animations.add(key);
     }.bind(this));
-    // this.loadAndPlay("idle", 1, false);
+    this.loadAndPlay("idle", 1, false);
   }
 
   update() {

@@ -45,6 +45,9 @@ var preload = function() {
     Fishing.game.load.image('powerBar'          , 'Assets/FilledBar.png');
     Fishing.game.load.image('powerBound'        , 'Assets/EmptyBar.png');
     Fishing.game.load.image('fishingline'       , 'Assets/fishingline.png');
+    Fishing.game.load.image('cloud1'            , 'Assets/cloud1.png');
+    Fishing.game.load.image('cloud2'            , 'Assets/cloud2.png');
+    Fishing.game.load.image('sun'               , 'Assets/sun.png');
     Fishing.game.time.advancedTiming = true;
 }
 
@@ -82,13 +85,13 @@ var create = function() {
   // Fishing.fishingRod.sprite.scale.setTo(-0.5, 0.5);
 
   //boat and man
-  Fishing.boat = Fishing.game.add.sprite(Fishing.configs.GAME_WIDTH / 2, Fishing.configs.GAME_HEIGHT / 2, 'boat');
-  Fishing.boat.anchor.setTo(0.5, 0);
+  Fishing.boat = Fishing.game.add.sprite(Fishing.configs.GAME_WIDTH / 2, Fishing.configs.GAME_HEIGHT * 0.8, 'boat');
+  Fishing.boat.anchor.setTo(0.5, 0.5);
   //boar and man move up and down
   Fishing.boatTween = Fishing.game.add.tween(Fishing.boat);
-  Fishing.boatTween.to({ y: Fishing.configs.GAME_HEIGHT / 2 + 10 }, 1500);
-  Fishing.boatTween.to({ y: Fishing.configs.GAME_HEIGHT / 2 - 10 }, 3000);
-  Fishing.boatTween.to({ y: Fishing.configs.GAME_HEIGHT / 2 }, 1500);
+  Fishing.boatTween.to({ y: Fishing.configs.GAME_HEIGHT * 0.8 + 10 }, 1500);
+  Fishing.boatTween.to({ y: Fishing.configs.GAME_HEIGHT * 0.8 - 10 }, 3000);
+  Fishing.boatTween.to({ y: Fishing.configs.GAME_HEIGHT * 0.8 }, 1500);
   Fishing.boatTween.loop(true);
   Fishing.boatTween.start();
 
@@ -133,6 +136,7 @@ var update = function() {
     var boatWave = Fishing.waveController.get("wave", {x: Fishing.configs.GAME_WIDTH / 2,
        y: Fishing.configs.GAME_HEIGHT / 2 + 280});
     boatWave.scale.setTo(2.5);
+    boatWave.isBoatWave = true;
     Fishing.cooldownBoatWave = 4 + Math.random() * 2;
   }
   Fishing.currentHookPoint = new Phaser.Point(Fishing.configs.GAME_WIDTH/2,Fishing.configs.GAME_HEIGHT/2+300)

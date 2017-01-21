@@ -7,7 +7,7 @@ class FishingRod {
       info.img
     );
     this.configs = configs;
-    this.sprite.anchor.set(0.1, 0.1);
+    this.sprite.anchor.set(0.05, 0.04);
   }
 
   update() {

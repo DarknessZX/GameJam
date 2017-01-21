@@ -17,20 +17,23 @@ class Ripple extends Phaser.Sprite {
     if(this.alive) {
       let x = (this.size += this.speed) >= this.maxSize ? (this.size = 0) : this.size;
       if(this.size == 0){
-        this.reset();
+        this.reset({
+          size : 0,
+          alpha: 1
+        });
       }
       this.scale.setTo(x, x * this.rateScale);
       this.alpha -= this.speed * this.rateAlpha;
     }
   }
 
-  reset() {
-    this.size = 0;
-    this.alpha = 1;
+  reset(configs) {
+    this.size = configs.size;
+    this.alpha = configs.alpha;
   }
 
-  reborn() {
+  reborn(configs) {
     this.alive = this._exists = this.exists = true;
-    this.alpha = 1;
+    this.reset(configs);
   }
 }

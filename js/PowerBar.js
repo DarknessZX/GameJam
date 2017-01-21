@@ -17,7 +17,6 @@ class PowerBar extends Phaser.Sprite {
     Fishing.powerBarGroup.add(this);
     Fishing.powerBarGroup.add(this.mask);
     Fishing.powerBarGroup.add(this.powerBound);
-    Fishing.powerBarGroup.scale.setTo(0.5);
     Fishing.powerBarGroup.position.set(Fishing.configs.GAME_WIDTH - this.width, Fishing.configs.GAME_HEIGHT - this.height);
   }
   update() {

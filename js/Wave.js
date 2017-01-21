@@ -33,23 +33,32 @@ class Wave extends Phaser.Sprite{
     }
   }
 
-  reset(x, y) {
-    this.position.setTo(x, y);
-    this.ripples.forEach(function(ripple) {
-      ripple.reset();
-    });
-  }
-
-  reborn(configs) {
-    this.alive = this._exists = this.exists = true;
-    this.ripples.forEach(function(ripple) {
-      ripple.reborn();
-    })
+  reset(configs) {
+    this.position.setTo(configs.x, configs.y);
     this.scale.set(1, 1);
     this.timeOut = configs.timeOut || 3;
+    this.isBoatWave = undefined;
 
     if(configs.x && configs.y) {
       this.position.setTo(configs.x, configs.y);
     }
+  }
+
+  reborn(configs) {
+    this.alive = this._exists = this.exists = true;
+    this.ripples.forEach(function(ripple, i) {
+      ripple.reborn({
+        size: 1 / (i + 1),
+        alpha: 1 - i * 0.2
+      });
+    })
+    this.reset(configs);
+  }
+
+  checkHit(point) {
+    if(this.x - 150 < point.x && this.x + 150 > point.x
+        && this.y - 50 < point.y && this.y + 50 > point.y)
+        return true;
+    return false;
   }
 }
