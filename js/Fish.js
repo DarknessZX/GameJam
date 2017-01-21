@@ -48,5 +48,6 @@ class Fish1 extends Phaser.Sprite{
   }
   onCatchedCompleted() {
     Fishing.fishController.kill(this);
+    Fishing.fishingHook.resume();
   }
 }
