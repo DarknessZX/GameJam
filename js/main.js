@@ -126,8 +126,7 @@ var update = function() {
   Fishing.cooldown -= Fishing.game.time.physicsElapsed;
   if(Fishing.cooldown <= 0) {
     var wave = Fishing.waveController.get("wave", {x: 150 + Math.random() * (Fishing.configs.GAME_WIDTH - 300), y: Fishing.configs.LAKE.y + 45 + Math.random(Fishing.configs.GAME_HEIGHT - Fishing.configs.LAKE.y - 90)});
-    Fishing.cooldown = 5 + Math.random() * 5;
-    $("canvas").trigger('hit',[wave]);
+    Fishing.cooldown = 10 + Math.random() * 5;
   }
 
   //summon boatWave

@@ -38,7 +38,7 @@ $(document).on("creating", function() {
               }
             })
             if(!hit) {
-              $("canvas").trigger("miss");
+              $("canvas").trigger("miss", [hitPoint]);
             }
             // Fishing.fishingLine.setHitLine(hitPoint);
 
@@ -51,7 +51,9 @@ $(document).on("creating", function() {
       if(!Fishing.game.paused) {
         if(Fishing.state == "SpacePress") {
           Fishing.state = "hit";
-          console.log(">>", hitPoint);
+          console.log("hit");
+          var sun = Fishing.game.add.sprite(hitPoint.x, hitPoint.y, "sun");
+          sun.scale.setTo(0.1);
         }
         //start twerk like neighbors from hell >> twerking
           //console.log(wave);
@@ -64,6 +66,8 @@ $(document).on("creating", function() {
         if(Fishing.state == "SpacePress") {
           //show "miss" message, come back like normal
           console.log("miss");
+          var cloud = Fishing.game.add.sprite(hitPoint.x, hitPoint.y, "cloud1");
+          cloud.scale.setTo(0.1);
         }
         Fishing.fishingHook.resume();
       }
