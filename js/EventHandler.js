@@ -8,9 +8,11 @@ $(document).on("creating", function() {
     },
     keyPress: function(e) {
       if(!Fishing.game.paused) {
-        if(e.keyCode == 32){ // Spacebar
-          
+         // Spacebar
+        if(e.keyCode == 32){
+
         }
+        
       }
     },
     hit: function(e) {
@@ -25,7 +27,7 @@ $(document).on("creating", function() {
     },
     mouseMove: function(e) {
       if(!Fishing.game.paused) {
-          console.log("move cc");
+
       }
     },
     success: function(e) {

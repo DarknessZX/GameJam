@@ -57,9 +57,11 @@ var create = function() {
   // }
   Fishing.wavesGroup = Fishing.game.add.group();
 
+  //boat and man
   Fishing.boat = Fishing.game.add.sprite(Fishing.configs.GAME_WIDTH / 2, Fishing.configs.GAME_HEIGHT / 2, 'boat');
   Fishing.boat.anchor.setTo(0.5, 0);
   Fishing.boat.scale.setTo(0.5);
+  //boar and man move up and down
   Fishing.boatTween = Fishing.game.add.tween(Fishing.boat);
   Fishing.boatTween.to({ y: Fishing.configs.GAME_HEIGHT / 2 + 10 }, 1500);
   Fishing.boatTween.to({ y: Fishing.configs.GAME_HEIGHT / 2 - 10 }, 3000);
@@ -67,11 +69,17 @@ var create = function() {
   Fishing.boatTween.loop(true);
   Fishing.boatTween.start();
 
+  //create wave controller
   Fishing.waveController = new WaveController();
   Fishing.waveController.get("wave", {x: 200, y: 400});
+  //fish wave will be summoned every Fishing.cooldown seconds
   Fishing.cooldown = 10;
+  //boat wave will be summoned every Fishing.cooldownBoatWave seconds
   Fishing.cooldownBoatWave = 1;
 
+  $(document).trigger("creating");
+
+  //<test>
   fish = Fishing.game.add.sprite(200, 360, 'fish1', 36);
   anim = fish.animations.add('jump');
   fish.smoothed = true;
@@ -94,16 +102,18 @@ var create = function() {
       img: 'rod'
     }
   );
-  $(document).trigger("creating");
+  //</test>
 }
 
 var update = function() {
+  // summon fish wave
   Fishing.cooldown -= Fishing.game.time.physicsElapsed;
   if(Fishing.cooldown <= 0) {
     Fishing.waveController.get("wave", {x: 200, y: 400});
     Fishing.cooldown = 5 + Math.random() * 5;
   }
 
+  //summon boatWave
   Fishing.cooldownBoatWave -= Fishing.game.time.physicsElapsed;
   if(Fishing.cooldownBoatWave <= 0) {
     var boatWave = Fishing.waveController.get("wave", {x: Fishing.configs.GAME_WIDTH / 2,
@@ -112,6 +122,7 @@ var update = function() {
     Fishing.cooldownBoatWave = 4 + Math.random() * 2;
   }
 
+
   Fishing.currentHookPoint = new Phaser.Point(Fishing.configs.GAME_WIDTH/2,Fishing.configs.GAME_HEIGHT/2+300)
   Fishing.fishingRod.movingRight = true;
 
@@ -119,4 +130,5 @@ var update = function() {
 }
 
 var render = function() {
+  
 }
