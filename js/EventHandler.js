@@ -87,6 +87,10 @@ $(document).on("creating", function() {
           console.log(hitPoint);
           Fishing.game.score += 100;
           Fishing.game.scoretext.setText('Score: ' + Fishing.game.score);
+          var successText = new Message(hitPoint.x, hitPoint.y, "Success");
+          setTimeout(function() {
+            successText.kill();
+          }, 500);
         }
         // start fish animation, fish come up from water
       }
@@ -94,8 +98,10 @@ $(document).on("creating", function() {
     fail: function(e, hitPoint) {
       if(!Fishing.game.paused) {
         if(Fishing.state == "MouseMove") {
-          console.log("fail");
-          console.log(hitPoint);
+          var failText = new Message(hitPoint.x, hitPoint.y, "Fail");
+          setTimeout(function() {
+            failText.kill();
+          }, 500);
         }
         //show "fail" message, come back like normal
       }
