@@ -92,6 +92,8 @@ $(document).on("creating", function() {
         if(Fishing.state == "MouseMove") {
           console.log("success");
           console.log(hitPoint);
+          Fishing.game.score += 100;
+          Fishing.game.scoretext.setText('Score: ' + Fishing.game.score);
         }
         // start fish animation, fish come up from water
       }

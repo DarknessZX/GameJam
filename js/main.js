@@ -111,6 +111,8 @@ var create = function() {
 
   $(document).trigger("creating");
 
+  Fishing.game.score = 0;
+  Fishing.game.scoretext = Fishing.game.make.text(100,100,"Score:",{ font: "32px Arial", fill: 0x000000 });
   //<test>
 
   // fish = Fishing.game.add.sprite(200, 360, 'fish1', 36);

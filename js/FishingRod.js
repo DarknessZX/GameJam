@@ -10,7 +10,7 @@ class FishingRod {
     this.sprite.anchor.set(0.05, 0.04);
 
     this.sprite.loadTexture("rodAnimation");
-    this.sprite.anchor.setTo(0.2, 0.3);
+    this.sprite.anchor.setTo(0.07, 0.385);
     this.sprite.scale.setTo(2);
     this.sprite.animations.add("hookRod");
     // this.sprite.animations.play("hookRod", 10, true);
