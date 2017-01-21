@@ -50,6 +50,7 @@ var preload = function() {
     Fishing.game.load.image('cloud1'            , 'Assets/cloud1.png');
     Fishing.game.load.image('cloud2'            , 'Assets/cloud2.png');
     Fishing.game.load.image('sun'               , 'Assets/sun.png');
+    Fishing.game.load.spritesheet('book'        , 'Assets/book.png', 38.5, 32, 4);
     Fishing.game.time.advancedTiming = true;
 }
 
@@ -113,9 +114,12 @@ var create = function() {
 
   $(document).trigger("creating");
 
-  var textScore = Fishing.game.add.group();
+  var textScoreGroup = Fishing.game.add.group();
   Fishing.game.score = 0;
-  textScore.add(Fishing.game.make.text(100,50,"Score:",{ font: "32px Arial", fill: "#000000" }));
+  Fishing.game.scoretext = Fishing.game.make.text(100,50,"Score:" + Fishing.game.score ,{ font: "32px Arial", fill: "#000000" })
+  textScoreGroup.add(Fishing.game.scoretext);
+
+  Fishing.game.add.existing(new Book(50,Fishing.configs.GAME_HEIGHT - 100));
   //console.log(Fishing.game.scoretext);
   //<test>
 
