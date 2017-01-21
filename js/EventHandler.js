@@ -7,20 +7,22 @@ $(document).on("creating", function() {
         Fishing.powerBar.resume();
         Fishing.fishingHook.pause();
         Fishing.state = "Click";
+        Fishing.clickable = false;
       }
     },
     keyPress: function(e) { //power, origin, angle
       if(!Fishing.game.paused) {
          // Spacebar
         if(Fishing.state == "Click") {
-          if(e.keyCode == 32){
+          if(Fishing.clickable){
              Fishing.powerBar.pause();
              Fishing.fishingLine.clear();
              Fishing.fishingRod.loadAndPlay("hookRod", 15, false);
+             Fishing.game.sound.play("swingrod");
             // Fishing.fishingLine.setHitLine(hitPoint);
-
             //run animation hook rod
           }
+          Fishing.clickable = true;
         }
       }
     },
@@ -32,6 +34,7 @@ $(document).on("creating", function() {
           // var sun = Fishing.game.add.sprite(hitPoint.x, hitPoint.y, "sun");
           // sun.scale.setTo(0.1);
           var fish = Fishing.fishController.get("fish1", hitPoint);
+          Fishing.game.sound.play("yeah");
           fish.loadAndPlay("hited");
           Fishing.fishingRod.fish = fish;
           Fishing.fishingRod.loadAndPlay("idle");
@@ -92,6 +95,7 @@ $(document).on("creating", function() {
           Fishing.state = "Success";
           // console.log("success");
           // console.log(hitPoint);
+          Fishing.game.sound.play("winning");
           Fishing.game.score += 100;
           Fishing.game.scoretext.setText('Score: ' + Fishing.game.score);
           fish.loadAndPlay("catched", 13, false);
@@ -122,7 +126,7 @@ $(document).on("creating", function() {
   //on powering
   $("canvas").on("click",      Fishing.game.eventHandler.click);
   //on Release power
-  $(document).on("keypress",   Fishing.game.eventHandler.keyPress); //including press space
+  $("canvas").on("click",   Fishing.game.eventHandler.keyPress); //including press space
   $("canvas").on("hit",        Fishing.game.eventHandler.hit);
   $("canvas").on("miss",       Fishing.game.eventHandler.miss);
   //on Pulling

@@ -51,7 +51,12 @@ var preload = function() {
     Fishing.game.load.image('cloud2'            , 'Assets/cloud2.png');
     Fishing.game.load.image('sun'               , 'Assets/sun.png');
     Fishing.game.load.spritesheet('book'        , 'Assets/book.png', 38.5, 32, 4);
+
     Fishing.game.load.audio('backgroundmusic'   , 'Assets/Happy-Boy-End-Theme-Kevin-MacLeod.mp3');
+    Fishing.game.load.audio('swingrod'          , 'Assets/Sound/SwingRod.mp3');
+    Fishing.game.load.audio('fishappear'        , 'Assets/Sound/FishAppear.mp3');
+    Fishing.game.load.audio('winning'           , 'Assets/Sound/Winning-sound-effect.mp3');
+    Fishing.game.load.audio('yeah'              , 'Assets/Sound/yeah.mp3');
     Fishing.game.time.advancedTiming = true;
 }
 
@@ -152,6 +157,7 @@ var update = function() {
   if(Fishing.cooldown <= 0) {
     var wave = Fishing.waveController.get("wave", {x: 150 + Math.random() * (Fishing.configs.GAME_WIDTH - 300), y: Fishing.configs.LAKE.y + 45 + Math.random() * 100});
     Fishing.cooldown = 10 + Math.random() * 5;
+    Fishing.game.sound.play("fishappear");
   }
 
   //summon boatWave
