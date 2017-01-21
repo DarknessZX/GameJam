@@ -58,26 +58,24 @@ var create = function() {
   Fishing.wavesGroup = Fishing.game.add.group();
   Fishing.fishsGroup = Fishing.game.add.group();
   //rod
-  Fishing.fishingHook = new FishingHook(Fishing.configs.GAME_WIDTH / 2, Fishing.configs.GAME_HEIGHT / 2);
-  Fishing.fishingLine = new FishingLine(Fishing.fishingHook.position);
+  Fishing.fishingHook = new FishingHook(Fishing.configs.GAME_WIDTH / 3 - 100, Fishing.configs.GAME_HEIGHT / 2.5);
+  //Fishing.fishingLine = new FishingLine(Fishing.fishingHook.position);
 
 
   Fishing.fishingLineGroups = Fishing.game.add.physicsGroup();
   Fishing.fishingRodsGroups = Fishing.game.add.physicsGroup();
   Fishing.fishingHooksGroups = Fishing.game.add.physicsGroup();
 
-  //Fishing.fishingLine = new FishingLine(Fishing.fishingHook.position);
   Fishing.fishingRod = new FishingRod(
     {
-      x : Fishing.configs.GAME_WIDTH/2,
-      y: Fishing.configs.GAME_HEIGHT,
+      x : Fishing.configs.GAME_WIDTH/3 - 100,
+      y: Fishing.configs.GAME_HEIGHT/2.5,
       img: 'rod'
     }
   );
 
-  Fishing.fishingLine = new FishingLine(new Phaser.Point(Fishing.fishingRod.sprite.position.x + Fishing.fishingRod.sprite.width/2,Fishing.fishingRod.sprite.position.y- Fishing.fishingRod.sprite.height/2));
-  Fishing.fishingRod.sprite.position.y -= 100;
-  Fishing.fishingRod.sprite.position.y -= 100;
+  Fishing.fishingLine = new FishingLine(new Phaser.Point(Fishing.fishingRod.sprite.position.x,Fishing.fishingRod.sprite.position.y));
+
   // Fishing.fishingRod.sprite.scale.setTo(-0.5, 0.5);
 
   //boat and man
@@ -120,8 +118,9 @@ var update = function() {
   // summon fish wave
   Fishing.cooldown -= Fishing.game.time.physicsElapsed;
   if(Fishing.cooldown <= 0) {
-    Fishing.waveController.get("wave", {x: 150 + Math.random() * (Fishing.configs.GAME_WIDTH - 300), y: Fishing.configs.LAKE.y + 45 + Math.random(Fishing.configs.GAME_HEIGHT - Fishing.configs.LAKE.y - 90)});
+    var wave = Fishing.waveController.get("wave", {x: 150 + Math.random() * (Fishing.configs.GAME_WIDTH - 300), y: Fishing.configs.LAKE.y + 45 + Math.random(Fishing.configs.GAME_HEIGHT - Fishing.configs.LAKE.y - 90)});
     Fishing.cooldown = 5 + Math.random() * 5;
+    $("canvas").trigger('hit',[wave]);
   }
 
   //summon boatWave
@@ -132,12 +131,10 @@ var update = function() {
     boatWave.scale.setTo(2.5);
     Fishing.cooldownBoatWave = 4 + Math.random() * 2;
   }
-
-
   Fishing.currentHookPoint = new Phaser.Point(Fishing.configs.GAME_WIDTH/2,Fishing.configs.GAME_HEIGHT/2+300)
-  Fishing.fishingRod.movingRight = true;
 
-  Fishing.fishingLine.graphics.angle = Fishing.fishingHook.angle;
+  Fishing.fishingLine.update(Fishing.fishingHook);
+  Fishing.fishingHook.update();
 }
 
 var render = function() {

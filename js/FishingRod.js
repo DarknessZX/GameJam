@@ -8,7 +8,7 @@ class FishingRod {
     );
     console.log(this.sprite);
     this.configs = configs;
-    this.sprite.anchor.set(0.9, 0.9);
+    this.sprite.anchor.set(0.1, 0.1);
   }
 
   update() {

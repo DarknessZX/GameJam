@@ -14,9 +14,11 @@ $(document).on("creating", function() {
         }
       }
     },
-    hit: function(e) {
+    hit: function(e,wave) {
       if(!Fishing.game.paused) {
         //start twerk like neighbors from hell >> twerking
+          //console.log(wave);
+          Fishing.fishingLine.setHitLine(wave.position);
       }
     },
     miss: function(e) {
