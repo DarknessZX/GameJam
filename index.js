@@ -34,8 +34,8 @@ function logPath(pathTree, level) {
   }
 }
 
-http.listen(6969, function(){
-  console.log(colors.bg.White, colors.fg.Black,'Server started. Listening on *:6969', colors.Reset);
-  console.log("Path tree");
-  logPath(pathTree);
-});
+// http.listen(6969, function(){
+//   console.log(colors.bg.White, colors.fg.Black,'Server started. Listening on *:6969', colors.Reset);
+//   console.log("Path tree");
+//   logPath(pathTree);
+// });
