@@ -111,8 +111,10 @@ var create = function() {
 
   $(document).trigger("creating");
 
+  var textScore = Fishing.game.add.group();
   Fishing.game.score = 0;
-  Fishing.game.scoretext = Fishing.game.make.text(100,100,"Score:",{ font: "32px Arial", fill: 0x000000 });
+  textScore.add(Fishing.game.make.text(100,50,"Score:",{ font: "32px Arial", fill: "#000000" }));
+  //console.log(Fishing.game.scoretext);
   //<test>
 
   // fish = Fishing.game.add.sprite(200, 360, 'fish1', 36);

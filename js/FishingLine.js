@@ -4,7 +4,7 @@ class FishingLine {
     //Fishing.game.add.existing(this);
     this.pointPosition = point1;
     this.graphics = Fishing.game.add.graphics(point1.x,point1.y);
-    this.graphics.lineStyle(1, "0x000000", 1);
+    this.graphics.lineStyle(4, "0x000000", 1);
     this.graphics.moveTo(0,0);
 
     this.graphics.lineTo(0,300);
