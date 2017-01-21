@@ -114,10 +114,10 @@ var create = function() {
 
   $(document).trigger("creating");
 
-  var textScoreGroup = Fishing.game.add.group();
+  Fishing.game.textScoreGroup = Fishing.game.add.group();
   Fishing.game.score = 0;
   Fishing.game.scoretext = Fishing.game.make.text(100,50,"Score:" + Fishing.game.score ,{ font: "32px Arial", fill: "#000000" })
-  textScoreGroup.add(Fishing.game.scoretext);
+  Fishing.game.textScoreGroup.add(Fishing.game.scoretext);
 
   Fishing.game.add.existing(new Book(50,Fishing.configs.GAME_HEIGHT - 100));
   //console.log(Fishing.game.scoretext);

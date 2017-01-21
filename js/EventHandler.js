@@ -13,6 +13,8 @@ $(document).on("creating", function() {
       if(!Fishing.game.paused) {
          // Spacebar
         Fishing.powerBar.pause();
+        Fishing.fishingHook.alpha = 0;
+        Fishing.fishingLine.graphics.clear();
         if(Fishing.state == "Click") {
           if(e.keyCode == 32){
             Fishing.fishingRod.loadAndPlay("hookRod");
@@ -40,6 +42,7 @@ $(document).on("creating", function() {
         if(Fishing.state == "SpacePress") {
           //show "miss" message, come back like normal
           console.log("miss");
+          
           var cloud = Fishing.game.add.sprite(hitPoint.x, hitPoint.y, "cloud1");
           cloud.scale.setTo(0.1);
         }
@@ -69,8 +72,8 @@ $(document).on("creating", function() {
         if(Fishing.state == "MouseMove") {
           console.log("success");
           console.log(hitPoint);
-          // Fishing.game.score += 100;
-          // Fishing.game.scoretext.setText('Score: ' + Fishing.game.score);
+          Fishing.game.score += 100;
+          Fishing.game.scoretext.setText('Score: ' + Fishing.game.score);
         }
         // start fish animation, fish come up from water
       }

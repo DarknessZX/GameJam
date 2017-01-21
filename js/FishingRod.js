@@ -62,5 +62,7 @@ class FishingRod {
       $("canvas").trigger("miss", [hitPoint]);
       this.loadAndPlay("idle");
     }
+
+    Fishing.fishingLine.setHitLine(hitPoint);
   }
 }

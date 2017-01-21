@@ -33,7 +33,7 @@ class FishingLine {
       y: hitwave.y - this.graphics.y
     };
     console.log(this.graphics);
-    this.graphics.lineStyle(2, "0x000000", 1);
+    this.graphics.lineStyle(4, "0x000000", 1);
     this.graphics.angle = 0;
     this.graphics.moveTo(0,0);
     this.graphics.lineTo(hitwave.x - this.graphics.x,hitwave.y - this.graphics.y);
