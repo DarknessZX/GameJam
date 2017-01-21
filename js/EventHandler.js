@@ -62,6 +62,7 @@ $(document).on("creating", function() {
           //console.log(wave);
           // Fishing.fishingLine.setHitLine(wave.position);
         Fishing.fishingHook.resume();
+        Fishing.popup.show();
       }
     },
     miss: function(e, hitPoint) {

@@ -39,6 +39,7 @@ var preload = function() {
     Fishing.game.load.image('circle'            , 'Assets/circle.png');
     Fishing.game.load.image('boat'              , 'Assets/man1.png');
     Fishing.game.load.spritesheet('fish1catched', 'Assets/fish1catched.png', 166, 143, 34);
+    Fishing.game.load.spritesheet('rodAnimation', 'Assets/rod_animation.png', 746, 700, 15);
     Fishing.game.load.image('fish1idle'         , 'Assets/fish1idle.png', 166, 143);
     Fishing.game.load.image('rod'               , 'Assets/rod.png');
     Fishing.game.load.image('hook'              , 'Assets/hook.png');
@@ -63,6 +64,7 @@ var create = function() {
   Fishing.wavesGroup = Fishing.game.add.group();
   Fishing.fishsGroup = Fishing.game.add.group();
   Fishing.powerBarGroup = Fishing.game.add.group();
+  Fishing.popupGroup = Fishing.game.add.group();
   //rod
   Fishing.fishingHook = new FishingHook(Fishing.configs.GAME_WIDTH / 2, Fishing.configs.GAME_HEIGHT / 2.5);
   //Fishing.fishingLine = new FishingLine(Fishing.fishingHook.position);
@@ -119,6 +121,11 @@ var create = function() {
   // anim.play(16, true);
 
   //</test>
+
+  var x = Fishing.game.add.sprite(0, 0, 'rodAnimation');
+  x.scale.setTo(0.8, 0.8);
+  x.animations.add("walk");
+  x.animations.play("walk", 5, true);
 }
 
 var update = function() {
