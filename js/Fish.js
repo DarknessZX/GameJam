@@ -11,7 +11,8 @@ class Fish1 extends Phaser.Sprite{
 
     this.animations.map = {
       idle        : "fish1idle",
-      catched     : "fish1catched"
+      catched     : "fish1catched",
+      hited       : "fish1hited"
     };
     Object.keys(this.animations.map).forEach(function(key) {
       this.loadTexture(this.animations.map[key]);

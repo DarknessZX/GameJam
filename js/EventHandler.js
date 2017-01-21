@@ -26,11 +26,12 @@ $(document).on("creating", function() {
     hit: function(e, hitPoint) {
       if(!Fishing.game.paused) {
         if(Fishing.state == "SpacePress") {
-          Fishing.state = "hit";
+          Fishing.state = "Hit";
           console.log("hit");
-          var sun = Fishing.game.add.sprite(hitPoint.x, hitPoint.y, "sun");
-          sun.scale.setTo(0.1);
-          $("canvas").trigger("mouseMove", [hitPoint]);
+          // var sun = Fishing.game.add.sprite(hitPoint.x, hitPoint.y, "sun");
+          // sun.scale.setTo(0.1);
+          var fish = Fishing.fishController.get("fish1", hitPoint);
+          fish.loadAndPlay("hited");
         }
       }
     },
@@ -48,6 +49,7 @@ $(document).on("creating", function() {
     mouseMove: function(e, hitPoint) {
       if(!Fishing.game.paused) {
         if(Fishing.state == "Hit") {
+          console.log("mouse move");
           //start twerk like neighbors from hell >> twerking
           //add fish mouch, some wave
             //console.log(wave);
@@ -57,6 +59,7 @@ $(document).on("creating", function() {
           // Fishing.popup.show();
           Fishing.state = "MouseMove";
           $("canvas").trigger(Math.random() * 2 > 0 ? "success" : "fail", [hitPoint]);
+          $("canvas").trigger("success", [hitPoint]);
         }
         // on twerking
       }
@@ -66,8 +69,8 @@ $(document).on("creating", function() {
         if(Fishing.state == "MouseMove") {
           console.log("success");
           console.log(hitPoint);
-          Fishing.game.score += 100;
-          Fishing.game.scoretext.setText('Score: ' + Fishing.game.score);
+          // Fishing.game.score += 100;
+          // Fishing.game.scoretext.setText('Score: ' + Fishing.game.score);
         }
         // start fish animation, fish come up from water
       }
