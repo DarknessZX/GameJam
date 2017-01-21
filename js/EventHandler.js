@@ -57,6 +57,7 @@ $(document).on("creating", function() {
           console.log("hit");
           var sun = Fishing.game.add.sprite(hitPoint.x, hitPoint.y, "sun");
           sun.scale.setTo(0.1);
+          $("canvas").trigger("mouseMove", [hitPoint]);
         }
         //start twerk like neighbors from hell >> twerking
           //console.log(wave);
@@ -76,26 +77,30 @@ $(document).on("creating", function() {
         Fishing.fishingHook.resume();
       }
     },
-    mouseMove: function(e) {
+    mouseMove: function(e, hitPoint) {
       if(!Fishing.game.paused) {
         if(Fishing.state == "Hit") {
-
+          //twerk
+          Fishing.state = "MouseMove";
+          $("canvas").trigger(Math.random() * 2 > 0 ? "success" : "fail", [hitPoint]);
         }
         // on twerking
       }
     },
-    success: function(e, wave) {
+    success: function(e, hitPoint) {
       if(!Fishing.game.paused) {
         if(Fishing.state == "MouseMove") {
-
+          console.log("success");
+          console.log(hitPoint);
         }
         // start fish animation, fish come up from water
       }
     },
-    fail: function(e) {
+    fail: function(e, hitPoint) {
       if(!Fishing.game.paused) {
         if(Fishing.state == "MouseMove") {
-
+          console.log("fail");
+          console.log(hitPoint);
         }
         //show "fail" message, come back like normal
       }

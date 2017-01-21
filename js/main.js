@@ -39,13 +39,12 @@ var preload = function() {
     Fishing.game.load.image('circle'            , 'Assets/circle.png');
     Fishing.game.load.image('boat'              , 'Assets/man1.png');
     Fishing.game.load.spritesheet('fish1catched', 'Assets/fish1catched.png', 166, 143, 34);
-    Fishing.game.load.spritesheet('rodAnimation', 'Assets/rod_animation.png', 746, 700, 15);
-    Fishing.game.load.image('fish1idle'         , 'Assets/fish1idle.png', 166, 143);
+    Fishing.game.load.spritesheet('rodAnimation', 'Assets/rod_animation.png', 375, 350, 15);
+    Fishing.game.load.image('fish1idle'         , 'Assets/fish1idle.png');
     Fishing.game.load.image('rod'               , 'Assets/rod.png');
     Fishing.game.load.image('hook'              , 'Assets/hook.png');
     Fishing.game.load.image('powerBar'          , 'Assets/FilledBar.png');
     Fishing.game.load.image('powerBound'        , 'Assets/EmptyBar.png');
-    Fishing.game.load.image('fishingline'       , 'Assets/fishingline.png');
     Fishing.game.load.image('cloud1'            , 'Assets/cloud1.png');
     Fishing.game.load.image('cloud2'            , 'Assets/cloud2.png');
     Fishing.game.load.image('sun'               , 'Assets/sun.png');
@@ -122,10 +121,6 @@ var create = function() {
 
   //</test>
 
-  var x = Fishing.game.add.sprite(0, 0, 'rodAnimation');
-  x.scale.setTo(0.8, 0.8);
-  x.animations.add("walk");
-  x.animations.play("walk", 5, true);
 }
 
 var update = function() {
