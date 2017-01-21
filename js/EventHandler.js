@@ -3,7 +3,7 @@ $(document).on("creating", function() {
   Fishing.game.eventHandler = {
     click: function(e) {
       if(!Fishing.game.paused) {
-
+        
       }
     },
     keyPress: function(e) {
@@ -12,7 +12,7 @@ $(document).on("creating", function() {
         if(e.keyCode == 32){
 
         }
-        
+
       }
     },
     hit: function(e) {

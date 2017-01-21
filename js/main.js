@@ -101,11 +101,13 @@ var create = function() {
   $(document).trigger("creating");
 
   //<test>
-  fish = Fishing.game.add.sprite(200, 360, 'fish1', 36);
-  anim = fish.animations.add('jump');
-  fish.smoothed = true;
 
-  anim.play(16, true);
+  // fish = Fishing.game.add.sprite(200, 360, 'fish1', 36);
+  // anim = fish.animations.add('jump');
+  // fish.smoothed = true;
+  //
+  // anim.play(16, true);
+
   //</test>
 }
 
@@ -113,7 +115,7 @@ var update = function() {
   // summon fish wave
   Fishing.cooldown -= Fishing.game.time.physicsElapsed;
   if(Fishing.cooldown <= 0) {
-    Fishing.waveController.get("wave", {x: 200, y: 400});
+    Fishing.waveController.get("wave", {x: 150 + Math.random() * (Fishing.configs.GAME_WIDTH - 300), y: Fishing.configs.LAKE.y + 45 + Math.random(Fishing.configs.GAME_HEIGHT - Fishing.configs.LAKE.y - 90)});
     Fishing.cooldown = 5 + Math.random() * 5;
   }
 
