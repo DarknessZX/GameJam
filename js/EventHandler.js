@@ -94,6 +94,10 @@ $(document).on("creating", function() {
           Fishing.game.score += 100;
           Fishing.game.scoretext.setText('Score: ' + Fishing.game.score);
           fish.loadAndPlay("catched", 13, false);
+          var successText = new Message(hitPoint.x, hitPoint.y, "Success");
+          setTimeout(function() {
+            successText.kill();
+          }, 500);
         }
         // start fish animation, fish come up from water
       }
@@ -104,8 +108,10 @@ $(document).on("creating", function() {
       }
       if(!Fishing.game.paused) {
         if(Fishing.state == "MouseMove") {
-          console.log("fail");
-          console.log(hitPoint);
+          var failText = new Message(hitPoint.x, hitPoint.y, "Fail");
+          setTimeout(function() {
+            failText.kill();
+          }, 500);
         }
         //show "fail" message, come back like normal
       }
