@@ -55,7 +55,7 @@ $(document).on("creating", function() {
     mouseMove: function(e, hitPoint) {
       if(!Fishing.game.paused) {
         if(Fishing.state == "Hit") {
-          console.log("mouse move");
+
           //start twerk like neighbors from hell >> twerking
           //add fish mouch, some wave
             //console.log(wave);
@@ -63,9 +63,20 @@ $(document).on("creating", function() {
 
           // Fishing.fishingHook.resume();
           // Fishing.popup.show();
+        }
+      }
+    },
+    mouseEnd: function(e, hitPoint) {
+      if(!Fishing.game.paused) {
+        if(Fishing.state == "Hit") {
+          Fishing.hookBound.hide();
+          Fishing.hookTwerk.hide();
           Fishing.state = "MouseMove";
-          $("canvas").trigger(Math.random() * 2 > 0 ? "success" : "fail", [hitPoint]);
-          $("canvas").trigger("success", [hitPoint]);
+          if(Fishing.hookBound.position.distance(Fishing.hookTwerk.position) > 5) {
+            $("canvas").trigger("fail", [hitPoint]);
+          } else {
+            $("canvas").trigger("success", [hitPoint]);
+          }
         }
         // on twerking
       }
@@ -99,6 +110,7 @@ $(document).on("creating", function() {
   $("canvas").on("miss",       Fishing.game.eventHandler.miss);
   //on Pulling
   $(document).on("mousemove",  Fishing.game.eventHandler.mouseMove);
+  $(document).on("mouseend",   Fishing.game.eventHandler.mouseEnd);
   $("canvas").on("success",    Fishing.game.eventHandler.success);
   $("canvas").on("fail",       Fishing.game.eventHandler.fail);
 

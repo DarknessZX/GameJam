@@ -133,6 +133,9 @@ var create = function() {
 
   var fish = Fishing.fishController.get("fish1", {x: 200, y: 200});
   fish.loadAndPlay("hited", 0.3, false);
+
+  Fishing.hookBound = new HookBound(0, 0);
+  Fishing.hookTwerk = new HookTwerk(0, 0);
 }
 
 var update = function() {
